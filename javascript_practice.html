@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
+    <title>..:: javaScript practice ::..</title>
     <style>
       body {
         font-family: sans-serif;
@@ -260,5 +260,14 @@
       "added 1 to odd and subtracted 1 from even",
       transform([2, 2, 0, 8, 10])
     );
+
+    // 15. Create a function to calculate the determinant of a 2 x 2 matrix. The determinant of the following matrix is: ad - bc:
+    function calcDeterminant(arr) {
+      return arr[0][0] * arr[1][1] - arr[0][1] * arr[1][0];
+    }
+
+    console.log("The determinant is: ", calcDeterminant([[1, 2], [3, 4]]));
+    console.log("The determinant is: ", calcDeterminant([[5, 3], [3, 1]]));
+    console.log("The determinant is: ", calcDeterminant([[1, 1], [1, 1]]));
   </script>
 </html>
