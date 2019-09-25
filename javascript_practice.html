@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h3>
+      javaScript practices from
+      <a target="_blank" href="https://edabit.com/challenge/"
+        >https://edabit.com/challenge/</a
+      >
+    </h3>
+
+    <p>
+      The difference of Array's min and max numbers is
+      <span id="arrayDifference"></span>
+    </p>
+
+    <p>
+      The word found:
+      <span id="wordInCenter"></span>
+    </p>
+
+    <p>
+      The digits in the string are:
+      <span id="isDigit"></span>
+    </p>
+  </body>
+
+  <script>
+    // 1. Given an array of integers, return the difference between the largest and smallest integers in the array.
+    function difference(array) {
+      let minNum = Math.min(...array); // finding min value from array
+      let maxNum = Math.max(...array); // finding max value from array
+      const numDifference = maxNum - minNum;
+
+      console.log("minNum in array is", minNum);
+      console.log("maxNum in array is", maxNum);
+      console.log(
+        "numDifference of min max numbers in array is",
+        numDifference
+      );
+
+      document.getElementById("arrayDifference").innerHTML = numDifference;
+    }
+
+    difference([10, 15, 20, 2, 10, 6]);
+
+    // 2. Write a function that returns true if a word can be found in between the start and end word in a dictionary.
+    function isBetween(first, last, word) {
+      const sorted = [first, last, word].sort(); //sort the words
+      return word === sorted[1]; //check that the word is equal to center position or not
+    }
+
+    console.log(
+      "word is in between the sorted array",
+      isBetween("apple", "banana", "azure")
+    );
+    console.log(
+      "word is in between the sorted array",
+      isBetween("body", "lung", "ace")
+    );
+
+    document.getElementById("wordInCenter").innerHTML = isBetween(
+      "body",
+      "lung",
+      "ace"
+    );
+
+    // 3. Write a regular expression that matches a string if it contains at least one digit.
+    function findIsDigit(str) {
+      let patt1 = /\d/g;
+      var result = str.match(patt1);
+      if (result == null) {
+        return "no digit found";
+      }
+      return result;
+    }
+
+    console.log("digit found in the string", findIsDigit("adsfa12"));
+    console.log("digit found in the string", findIsDigit("ads"));
+
+    document.getElementById("isDigit").innerHTML = findIsDigit("adsfa12");
+
+    // 4. Create a function that returns the next element in an arithmetic sequence. In an arithmetic sequence, each element is formed by adding the same constant to the previous element.
+
+    function nextElement(arr) {
+      let firstElement = arr[0];
+      let secondElement = arr[1];
+      let secondLastElement = arr[arr.length - 2];
+      let lastElement = arr[arr.length - 1];
+
+      const firstDifference = secondElement - firstElement;
+      const secondDifference = lastElement - secondLastElement;
+
+      if (firstDifference === secondDifference) {
+        const elementToPush = lastElement + firstDifference;
+        return elementToPush;
+      }
+    }
+
+    console.log(
+      "Arethmatic next number to be pushed",
+      nextElement([3, 5, 7, 9])
+    );
+    nextElement([-5, -6, -7]);
+
+    // 5. In semantic versioning a piece of software can be represented in a format like this example: 6.1.9
+
+    function retrieveMajor(semver) {
+      let versionArray = semver.split(".");
+      const majorVersion = versionArray[0];
+      return majorVersion;
+    }
+
+    function retrieveMinor(semver) {
+      let versionArray = semver.split(".");
+      const minorVersion = versionArray[1];
+      return minorVersion;
+    }
+
+    function retrievePatch(semver) {
+      let versionArray = semver.split(".");
+      const patch = versionArray[2];
+      return patch;
+    }
+
+    console.log("Major Version", retrieveMajor("6.1.9"));
+    console.log("Minor Version", retrieveMinor("6.1.9"));
+    console.log("retrieve patch", retrievePatch("6.1.9"));
+
+    // 6. Create a function that returns the smaller number.
+
+    function smallerNum(n1, n2) {
+      return Math.min(n1, n2);
+    }
+
+    console.log("smaller number is", smallerNum("21", "44"));
+
+    // 7. Your friend is trying to write a function that removes all vowels from a string.
+    function removeVowels(str) {
+      return str.replace(/[aeiou]/gi, ""); //regEx for removing vowels
+    }
+
+    console.log("the word after removing vowel", removeVowels("candy"));
+    console.log("the word after removing vowel", removeVowels("hello"));
+    console.log("the word after removing vowel", removeVowels("apple"));
+
+    // 8. Create a function to remove all null values from an array.
+    function removeNull(arr) {
+      arr = arr.filter(element => element != null);
+      return arr;
+    }
+
+    console.log("after removing null", removeNull(["a", null, "b", null]));
+    console.log(
+      "after removing null",
+      removeNull([null, null, null, null, null])
+    );
+    console.log("after removing null", removeNull([7, 8, null, 9]));
+
+    // 9. Given a sorted array of numbers, remove any numbers that are divisible by 13. Return the amended array.
+    function unlucky13(nums) {
+      nums = nums.filter(num => num % 13 === 0);
+      return nums;
+    }
+
+    console.log("numbers divisible by 13", unlucky13([53, 182, 435, 591, 637]));
+    console.log(
+      "numbers divisible by 13",
+      unlucky13([24, 316, 393, 458, 1279])
+    );
+    console.log(
+      "numbers divisible by 13",
+      unlucky13([104, 351, 455, 806, 871])
+    );
+
+    // 10. Your task is to create a function that, when fed the inputs below, produce the sample outputs shown.
+    function mysteryFunc(arr, num) {
+      arr = arr.map(element => element % num);
+      return arr;
+    }
+    console.log(
+      "after getting mod the values would be ",
+      mysteryFunc([5, 7, 8, 2, 1], 2)
+    );
+    console.log(
+      "after getting mod the values would be ",
+      mysteryFunc([9, 8, 16, 47], 4)
+    );
+    console.log(
+      "after getting mod the values would be ",
+      mysteryFunc([17, 11, 99, 55, 23, 1], 5)
+    );
+    console.log(
+      "after getting mod the values would be ",
+      mysteryFunc([6, 1], 7)
+    );
+    console.log(
+      "after getting mod the values would be ",
+      mysteryFunc([3, 2, 9], 3)
+    );
+    console.log(
+      "after getting mod the values would be ",
+      mysteryFunc([48, 22, 0, 19, 33, 100], 10)
+    );
+
+    // 11. Create a function that returns true if an input string contains only uppercase or only lowercase letters.
+    function sameCase(str) {
+      return /^[A-Z]*$/.test(str) || /^[a-z]*$/.test(str);
+    }
+
+    console.log("same case is", sameCase("hello"));
+    console.log("same case is", sameCase("HELLO"));
+    console.log("same case is", sameCase("Hello"));
+    console.log("same case is", sameCase("ketcHUp"));
+
+    // 12. Create a function that takes a number (from 1 - 60) and returns a corresponding string of hyphens.
+    function Go(num) {
+      return "-".repeat(num);
+    }
+
+    console.log("hyphens ", Go(5));
+    console.log("hyphens ", Go(2));
+    console.log("hyphens ", Go(6));
+
+    // 13. A number added with its additive inverse equals zero. Create a function that returns an array of additive inverses.
+    function additiveInverse(arr) {
+      arr = arr.map(element => element * -1);
+      return arr;
+    }
+
+    console.log("inverse sign numbers", additiveInverse([5, -7, 8, 3]));
+    console.log("inverse sign numbers", additiveInverse([1, 1, 1, 1, 1]));
+    console.log("inverse sign numbers", additiveInverse([-5, -25, 35]));
+
+    // 14. Create a function that goes through the array, incrementing (+1) for each odd number and decrementing (-1) for each even number.
+  </script>
+</html>
