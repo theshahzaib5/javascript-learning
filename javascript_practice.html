@@ -39,8 +39,8 @@
   <script>
     // 1. Given an array of integers, return the difference between the largest and smallest integers in the array.
     function difference(array) {
-      let minNum = Math.min(...array); // finding min value from array
-      let maxNum = Math.max(...array); // finding max value from array
+      const minNum = Math.min(...array); // finding min value from array
+      const maxNum = Math.max(...array); // finding max value from array
       const numDifference = maxNum - minNum;
 
       console.log("minNum in array is", minNum);
@@ -77,12 +77,10 @@
     );
 
     // 3. Write a regular expression that matches a string if it contains at least one digit.
-    function findIsDigit(str) {
-      let patt1 = /\d/g;
-      const result = str.match(patt1);
-      if (result == null) {
-        return "no digit found";
-      }
+    function findIsDigit(word) {
+      const regEx = /\d/g;
+      const result = word.match(regEx);
+      if (result == null) return "no digit found";
       return result;
     }
 
@@ -98,21 +96,36 @@
       let secondElement = arr[1];
       let secondLastElement = arr[arr.length - 2];
       let lastElement = arr[arr.length - 1];
-
       const firstDifference = secondElement - firstElement;
       const secondDifference = lastElement - secondLastElement;
-
       if (firstDifference === secondDifference) {
         const elementToPush = lastElement + firstDifference;
         return elementToPush;
       }
+      // if (arr.length > 1) {
+      //   let difference = arr[1] - arr[0];
+      //   arr.map((element, i) => {
+      //     if (i < arr.length - 1) {
+      //       const itemDifference = arr[i + 1] - element;
+      //       if (difference === itemDifference) {
+      //         difference = itemDifference;
+      //       }
+      //     }
+      //   });
+      //   return difference;
+      // }
     }
 
+    // console.log("Arethmatic next number to be pushed", nextElement([3, 5, 7]));
+    // nextElement([-5, -6, -7]);
+
+    // console.log(
+    //   "Arethmatic next number to be pushed",
     console.log(
       "Arethmatic next number to be pushed",
-      nextElement([3, 5, 7, 9])
+      nextElement([5, 10, 15, 22, 25, 30, 35])
     );
-    nextElement([-5, -6, -7]);
+    // );
 
     // 5. In semantic versioning a piece of software can be represented in a format like this example: 6.1.9
 
@@ -157,10 +170,7 @@
     console.log("the word after removing vowel", removeVowels("apple"));
 
     // 8. Create a function to remove all null values from an array.
-    function removeNull(arr) {
-      const removedNull = arr.filter(element => element != null);
-      return removedNull;
-    }
+    removeNull = arr => arr.filter(element => element != null);
 
     console.log("after removing null", removeNull(["a", null, "b", null]));
     console.log(
@@ -170,9 +180,7 @@
     console.log("after removing null", removeNull([7, 8, null, 9]));
 
     // 9. Given a sorted array of numbers, remove any numbers that are divisible by 13. Return the amended array.
-    function unlucky13(nums) {
-      return nums.filter(num => num % 13 === 0);
-    }
+    unlucky13 = nums => nums.filter(num => num % 13 === 0);
 
     console.log("numbers divisible by 13", unlucky13([53, 182, 435, 591, 637]));
     console.log(
@@ -185,9 +193,8 @@
     );
 
     // 10. Your task is to create a function that, when fed the inputs below, produce the sample outputs shown.
-    function mysteryFunc(arr, num) {
-      return arr.map(element => element % num);
-    }
+    mysteryFunc = (arr, num) => arr.map(element => element % num);
+
     console.log(
       "after getting mod the values would be ",
       mysteryFunc([5, 7, 8, 2, 1], 2)
@@ -214,9 +221,7 @@
     );
 
     // 11. Create a function that returns true if an input string contains only uppercase or only lowercase letters.
-    function sameCase(str) {
-      return /^[A-Z]*$/.test(str) || /^[a-z]*$/.test(str);
-    }
+    sameCase = str => /^[A-Z]*$/.test(str) || /^[a-z]*$/.test(str);
 
     console.log("same case is", sameCase("hello"));
     console.log("same case is", sameCase("HELLO"));
@@ -224,29 +229,22 @@
     console.log("same case is", sameCase("ketcHUp"));
 
     // 12. Create a function that takes a number (from 1 - 60) and returns a corresponding string of hyphens.
-    function Go(num) {
-      return "-".repeat(num);
-    }
+    Go = num => "-".repeat(num);
 
     console.log("hyphens ", Go(5));
     console.log("hyphens ", Go(2));
     console.log("hyphens ", Go(6));
 
     // 13. A number added with its additive inverse equals zero. Create a function that returns an array of additive inverses.
-    function additiveInverse(arr) {
-      return arr.map(element => element * -1);
-    }
+    additiveInverse = arr => arr.map(element => element * -1);
 
     console.log("inverse sign numbers", additiveInverse([5, -7, 8, 3]));
     console.log("inverse sign numbers", additiveInverse([1, 1, 1, 1, 1]));
     console.log("inverse sign numbers", additiveInverse([-5, -25, 35]));
 
     // 14. Create a function that goes through the array, incrementing (+1) for each odd number and decrementing (-1) for each even number.
-    function transform(arr) {
-      return arr.map(element =>
-        element % 2 === 0 ? element - 1 : element + 1
-      );
-    }
+    transform = arr =>
+      arr.map(element => (element % 2 === 0 ? element - 1 : element + 1));
 
     console.log(
       "added 1 to odd and subtracted 1 from even",
@@ -272,12 +270,8 @@
 
     // 16. Write a function that returns true if all integers in an array are factors of a number, and false otherwise.
     function checkFactors(arr, num) {
-      let nonFactorNums = arr.filter(element => num % element != 0);
-      if (nonFactorNums.length === 0) {
-        return true;
-      } else {
-        return false;
-      }
+      const nonFactorNums = arr.filter(element => num % element != 0);
+      return nonFactorNums.length === 0 ? true : false;
     }
 
     console.log("the numbers are all factors: ", checkFactors([2, 3, 4], 12));
@@ -290,7 +284,7 @@
 
     // 17. Given a word, create a function that checks whether it is a palindrome.
     function checkPalindrome(word) {
-      let wordArr = word
+      const wordArr = word
         .split("")
         .reverse()
         .join("");
@@ -299,7 +293,7 @@
     }
 
     function checkPalindrome1(word) {
-      let strLen = word.length;
+      const strLen = word.length;
       word = word.toLowerCase();
 
       if (strLen === 0 || strLen === 1) {
@@ -314,5 +308,17 @@
     console.log("the word is palindrome", checkPalindrome("scary"));
     console.log("the word is palindrome", checkPalindrome("reviver"));
     console.log("the word is palindrome", checkPalindrome("stressed"));
+
+    // 18. Write a function that returns true if there exists at least one number that is larger than or equal to n.
+    existsHigher = (arr, num) => {
+      let bigNumberArr = arr.filter(element => element >= num);
+      if (bigNumberArr.length === 0) return false;
+      return true;
+    };
+
+    console.log("higher number exits", existsHigher([5, 3, 15, 22, 4], 10));
+    console.log("higher number exits", existsHigher([1, 2, 3, 4, 5], 8));
+    console.log("higher number exits", existsHigher([4, 3, 3, 3, 2, 2, 2], 4));
+    console.log("higher number exits", existsHigher([], 5));
   </script>
 </html>
