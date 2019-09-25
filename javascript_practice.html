@@ -287,5 +287,32 @@
     );
     console.log("the numbers are all factors: ", checkFactors([1, 2, 50], 100));
     console.log("the numbers are all factors: ", checkFactors([3, 6], 9));
+
+    // 17. Given a word, create a function that checks whether it is a palindrome.
+    function checkPalindrome(word) {
+      let wordArr = word
+        .split("")
+        .reverse()
+        .join("");
+
+      return word === wordArr;
+    }
+
+    function checkPalindrome1(word) {
+      let strLen = word.length;
+      word = word.toLowerCase();
+
+      if (strLen === 0 || strLen === 1) {
+        return true;
+      } else if (word[0] === word[strLen - 1]) {
+        return checkPalindrome(word.slice(1, strLen - 1));
+      }
+      return false;
+    }
+
+    console.log("the word is palindrome", checkPalindrome("mom"));
+    console.log("the word is palindrome", checkPalindrome("scary"));
+    console.log("the word is palindrome", checkPalindrome("reviver"));
+    console.log("the word is palindrome", checkPalindrome("stressed"));
   </script>
 </html>
