@@ -269,5 +269,23 @@
     console.log("The determinant is: ", calcDeterminant([[1, 2], [3, 4]]));
     console.log("The determinant is: ", calcDeterminant([[5, 3], [3, 1]]));
     console.log("The determinant is: ", calcDeterminant([[1, 1], [1, 1]]));
+
+    // 16. Write a function that returns true if all integers in an array are factors of a number, and false otherwise.
+    function checkFactors(arr, num) {
+      let nonFactorNums = arr.filter(element => num % element != 0);
+      if (nonFactorNums.length === 0) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    console.log("the numbers are all factors: ", checkFactors([2, 3, 4], 12));
+    console.log(
+      "the numbers are all factors: ",
+      checkFactors([1, 2, 3, 8], 12)
+    );
+    console.log("the numbers are all factors: ", checkFactors([1, 2, 50], 100));
+    console.log("the numbers are all factors: ", checkFactors([3, 6], 9));
   </script>
 </html>
