@@ -79,7 +79,7 @@
     // 3. Write a regular expression that matches a string if it contains at least one digit.
     function findIsDigit(str) {
       let patt1 = /\d/g;
-      var result = str.match(patt1);
+      const result = str.match(patt1);
       if (result == null) {
         return "no digit found";
       }
@@ -148,7 +148,8 @@
 
     // 7. Your friend is trying to write a function that removes all vowels from a string.
     function removeVowels(str) {
-      return str.replace(/[aeiou]/gi, ""); //regEx for removing vowels
+      const removedVowels = str.replace(/[aeiou]/gi, ""); //regEx for removing vowels
+      return removedVowels;
     }
 
     console.log("the word after removing vowel", removeVowels("candy"));
@@ -157,8 +158,8 @@
 
     // 8. Create a function to remove all null values from an array.
     function removeNull(arr) {
-      arr = arr.filter(element => element != null);
-      return arr;
+      const removedNull = arr.filter(element => element != null);
+      return removedNull;
     }
 
     console.log("after removing null", removeNull(["a", null, "b", null]));
@@ -170,8 +171,7 @@
 
     // 9. Given a sorted array of numbers, remove any numbers that are divisible by 13. Return the amended array.
     function unlucky13(nums) {
-      nums = nums.filter(num => num % 13 === 0);
-      return nums;
+      return nums.filter(num => num % 13 === 0);
     }
 
     console.log("numbers divisible by 13", unlucky13([53, 182, 435, 591, 637]));
@@ -186,8 +186,7 @@
 
     // 10. Your task is to create a function that, when fed the inputs below, produce the sample outputs shown.
     function mysteryFunc(arr, num) {
-      arr = arr.map(element => element % num);
-      return arr;
+      return arr.map(element => element % num);
     }
     console.log(
       "after getting mod the values would be ",
@@ -235,8 +234,7 @@
 
     // 13. A number added with its additive inverse equals zero. Create a function that returns an array of additive inverses.
     function additiveInverse(arr) {
-      arr = arr.map(element => element * -1);
-      return arr;
+      return arr.map(element => element * -1);
     }
 
     console.log("inverse sign numbers", additiveInverse([5, -7, 8, 3]));
@@ -244,5 +242,23 @@
     console.log("inverse sign numbers", additiveInverse([-5, -25, 35]));
 
     // 14. Create a function that goes through the array, incrementing (+1) for each odd number and decrementing (-1) for each even number.
+    function transform(arr) {
+      return arr.map(element =>
+        element % 2 === 0 ? element - 1 : element + 1
+      );
+    }
+
+    console.log(
+      "added 1 to odd and subtracted 1 from even",
+      transform([1, 2, 3, 4, 5])
+    );
+    console.log(
+      "added 1 to odd and subtracted 1 from even",
+      transform([3, 3, 4, 3])
+    );
+    console.log(
+      "added 1 to odd and subtracted 1 from even",
+      transform([2, 2, 0, 8, 10])
+    );
   </script>
 </html>
