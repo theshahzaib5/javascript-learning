@@ -92,28 +92,16 @@
     // 4. Create a function that returns the next element in an arithmetic sequence. In an arithmetic sequence, each element is formed by adding the same constant to the previous element.
 
     function nextElement(arr) {
-      let firstElement = arr[0];
-      let secondElement = arr[1];
-      let secondLastElement = arr[arr.length - 2];
-      let lastElement = arr[arr.length - 1];
-      const firstDifference = secondElement - firstElement;
-      const secondDifference = lastElement - secondLastElement;
-      if (firstDifference === secondDifference) {
-        const elementToPush = lastElement + firstDifference;
-        return elementToPush;
-      }
-      // if (arr.length > 1) {
-      //   let difference = arr[1] - arr[0];
-      //   arr.map((element, i) => {
-      //     if (i < arr.length - 1) {
-      //       const itemDifference = arr[i + 1] - element;
-      //       if (difference === itemDifference) {
-      //         difference = itemDifference;
-      //       }
-      //     }
-      //   });
-      //   return difference;
-      // }
+      let diff = arr[1] - arr[0];
+
+      arr.forEach((sequenceNumber, index) => {
+        if (index > 0) {
+          if (sequenceNumber - diff !== arr[index - 1]) {
+            diff = sequenceNumber - arr[index - 1];
+          }
+        }
+      });
+      return diff;
     }
 
     // console.log("Arethmatic next number to be pushed", nextElement([3, 5, 7]));
@@ -122,8 +110,8 @@
     // console.log(
     //   "Arethmatic next number to be pushed",
     console.log(
-      "Arethmatic next number to be pushed",
-      nextElement([5, 10, 15, 22, 25, 30, 35])
+      "\n \n \n Arethmatic next number to be pushed",
+      nextElement([5, 10, 15, 20, 25, 30, 35])
     );
     // );
 
@@ -320,5 +308,164 @@
     console.log("higher number exits", existsHigher([1, 2, 3, 4, 5], 8));
     console.log("higher number exits", existsHigher([4, 3, 3, 3, 2, 2, 2], 4));
     console.log("higher number exits", existsHigher([], 5));
+
+    // 19. Write a function that returns 0 if the input is 1, and returns 1 if the input is 0.
+    function flip(y) {
+      return y === 1 ? 0 : 1;
+    }
+
+    console.log("flip number 0 or 1: ", flip(0));
+
+    // 20. Given a total due and an array representing the amount of change in your pocket, determine whether or not you are able to pay for the item. Change will always be represented in the following order: quarters, dimes, nickels, pennies. To illustrate: changeEnough([25, 20, 5, 0], 4.25) should yield true, since having 25 quarters, 20 dimes, 5 nickels and 0 pennies gives you 6.25 + 2 + .25 + 0 = 8.50.
+    function changeEnough(change, number) {
+      const quarter = 0.25;
+      const dime = 0.1;
+      const nickel = 0.05;
+      const penny = 0.01;
+
+      const totalQuaters = change[0] * quarter;
+      const totalDimes = change[1] * dime;
+      const totalNickels = change[2] * nickel;
+      const totalPenny = change[3] * penny;
+
+      const totalAmount = totalQuaters + totalDimes + totalNickels + totalPenny;
+      if (totalAmount < number) return false;
+      console.log("totalAmount", totalAmount, "number", number);
+      return true;
+    }
+
+    console.log(
+      "have you enough change: ",
+      changeEnough([2, 100, 0, 0], 14.11)
+    );
+    console.log("have you enough change: ", changeEnough([0, 0, 20, 5], 0.75));
+    console.log(
+      "have you enough change: ",
+      changeEnough([30, 40, 20, 5], 12.55)
+    );
+    console.log("have you enough change: ", changeEnough([10, 0, 0, 50], 3.85));
+    console.log(
+      "have you enough change: ",
+      changeEnough([1, 0, 5, 219], 19.99)
+    );
+
+    // 21. Create a function that takes an array of hurdle heights and a jumper's jump height, and determine whether or not the hurdler can clear all the hurdles.
+    function hurdleJump(hurdles, jumpHeight) {
+      if (hurdles.length === 0) return true;
+      if (jumpHeight >= hurdles[hurdles.length - 1]) return true;
+      return false;
+    }
+
+    console.log("you can clear the hurdle: ", hurdleJump([1, 2, 3, 4, 5], 5));
+    console.log("you can clear the hurdle: ", hurdleJump([5, 5, 3, 4, 5], 3));
+    console.log("you can clear the hurdle: ", hurdleJump([5, 4, 5, 6], 10));
+    console.log("you can clear the hurdle: ", hurdleJump([1, 2, 1], 1));
+    console.log("you can clear the hurdle: ", hurdleJump([], 4));
+
+    // 22. Create a function that adds a string ending to each member in an array.
+    function addEnding(strings, endingString) {
+      return strings.map(element => element + endingString);
+    }
+    console.log(
+      "add a string to all array items",
+      addEnding(["clever", "meek", "hurried", "nice"], "ly")
+    );
+    console.log(
+      "add a string to all array items",
+      addEnding(["new", "pander", "scoop"], "er")
+    );
+    console.log(
+      "add a string to all array items",
+      addEnding(["bend", "sharpen", "mean"], "ing")
+    );
+
+    // 23. Create a function that takes in an array (slot machine outcome) and returns true if all elements in the array are identical, and false otherwise. The array will contain 4 elements.
+    function testJackpot(jackpotArray) {
+      let isEqual = true;
+      for (let index = 0; index < jackpotArray.length; index++) {
+        if (jackpotArray[index] !== jackpotArray[0]) {
+          isEqual = false;
+          break;
+        }
+      }
+      return isEqual;
+    }
+    console.log("it is jackpot: ", testJackpot(["@", "@", "@", "@"]));
+    console.log("it is jackpot: ", testJackpot(["SS", "SS", "Ss", "Ss"]));
+
+    // 24. Write a function that reverses a string. Make your function recursive.
+    function reverse(word) {
+      return word
+        .split("")
+        .reverse()
+        .join("");
+    }
+    console.log("reverse word would be: ", reverse("hello"));
+    console.log("reverse word would be: ", reverse("world"));
+    console.log("reverse word would be: ", reverse("a"));
+    console.log("reverse word would be: ", reverse(""));
+
+    // 25. factorial function
+    function factorial(num) {
+      if (num < 1) return 1;
+      else return num * factorial(num - 1);
+    }
+
+    console.log("factorial is: ", factorial(5));
+
+    // 26. Create a function that takes an array of date objects and returns the "longest streak" (i.e. number of consecutive days in a row).
+    function longestStreak(arr) {
+      var date1 = new Date("7/11/2010");
+      var date2 = new Date("12/12/2010");
+      var diffDays = date2.getDate() - date1.getDate();
+      console.log(diffDays);
+
+      // const longestStreak = arr => {
+      //   if (!arr.length) return 0;
+      //   return (
+      //     arr.slice(1).reduce(
+      //       ([maxStreak, currStreak], { date }, i) => {
+      //         const diff = Math.abs(new Date(date) - new Date(arr[i].date));
+      //         return diff !== MS_IN_A_DAY
+      //           ? [maxStreak, 0]
+      //           : [Math.max(maxStreak, currStreak + 1), currStreak + 1];
+      //       },
+      //       [0, 0]
+      //     )[0] + 1
+      //   );
+      // };
+    }
+
+    // console.log(Math.abs(new Date("2018-09-18") - new Date("2018-09-19")));
+
+    console.log(
+      "the longest streak length would be",
+      longestStreak([
+        {
+          date: "2018-09-18"
+        },
+        {
+          date: "2018-09-19"
+        },
+        {
+          date: "2018-09-20"
+        },
+        {
+          date: "2018-09-21"
+        },
+        {
+          date: "2018-09-22"
+        },
+        {
+          date: "2019-09-26"
+        },
+        {
+          date: "2018-09-27"
+        },
+        {
+          date: "2018-09-30"
+        }
+      ])
+    );
   </script>
 </html>
