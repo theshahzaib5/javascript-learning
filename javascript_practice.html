@@ -414,56 +414,44 @@
     console.log("factorial is: ", factorial(5));
 
     // 26. Create a function that takes an array of date objects and returns the "longest streak" (i.e. number of consecutive days in a row).
+
     function longestStreak(arr) {
-      var date1 = new Date("7/11/2010");
-      var date2 = new Date("12/12/2010");
-      var diffDays = date2.getDate() - date1.getDate();
-      console.log(diffDays);
-
-      // const longestStreak = arr => {
-      //   if (!arr.length) return 0;
-      //   return (
-      //     arr.slice(1).reduce(
-      //       ([maxStreak, currStreak], { date }, i) => {
-      //         const diff = Math.abs(new Date(date) - new Date(arr[i].date));
-      //         return diff !== MS_IN_A_DAY
-      //           ? [maxStreak, 0]
-      //           : [Math.max(maxStreak, currStreak + 1), currStreak + 1];
-      //       },
-      //       [0, 0]
-      //     )[0] + 1
-      //   );
-      // };
+      if (arr.length === 0) return 0;
+      const MILI_SECOND_IN_DAY = 86400000;
+      let maxStreak = 0;
+      let streak = 0;
+      for (let index = 0; index < arr.length - 1; index++) {
+        const element = arr[index];
+        if (
+          MILI_SECOND_IN_DAY ===
+          new Date(arr[index + 1].date) - new Date(element.date)
+        )
+          streak++;
+        if (streak > maxStreak) maxStreak = streak;
+      }
+      return maxStreak + 1;
     }
-
-    // console.log(Math.abs(new Date("2018-09-18") - new Date("2018-09-19")));
 
     console.log(
       "the longest streak length would be",
       longestStreak([
         {
-          date: "2018-09-18"
+          date: "2019-09-18"
         },
         {
-          date: "2018-09-19"
+          date: "2019-09-19"
         },
         {
-          date: "2018-09-20"
-        },
-        {
-          date: "2018-09-21"
-        },
-        {
-          date: "2018-09-22"
+          date: "2019-09-20"
         },
         {
           date: "2019-09-26"
         },
         {
-          date: "2018-09-27"
+          date: "2019-09-27"
         },
         {
-          date: "2018-09-30"
+          date: "2019-09-30"
         }
       ])
     );
