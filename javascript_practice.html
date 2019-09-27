@@ -38,13 +38,21 @@
 
   <script>
     // 1. Given an array of integers, return the difference between the largest and smallest integers in the array.
-    function difference(array) {
-      const minNum = Math.min(...array); // finding min value from array
-      const maxNum = Math.max(...array); // finding max value from array
-      const numDifference = maxNum - minNum;
 
-      console.log("minNum in array is", minNum);
-      console.log("maxNum in array is", maxNum);
+    // REDO
+    // update min max (without use built in mehtods)
+    // what is indexing
+
+    function difference(array) {
+      let minNumber = array[0];
+      for (let index = 0; index < array.length - 1; index++) {
+        array[index] < array[index + 1]
+          ? (minNumber = array[index])
+          : (minNumber = array[index + 1]);
+      }
+      console.log(minNumber);
+      const maxNum = Math.max(...array); // finding max value from array
+      const numDifference = maxNum - minNumber;
       console.log(
         "numDifference of min max numbers in array is",
         numDifference
@@ -53,7 +61,7 @@
       document.getElementById("arrayDifference").innerHTML = numDifference;
     }
 
-    difference([10, 15, 20, 2, 10, 6]);
+    difference([50, 15, 20, 22, 10, 6]);
 
     // 2. Write a function that returns true if a word can be found in between the start and end word in a dictionary.
     function isBetween(first, last, word) {
@@ -77,6 +85,8 @@
     );
 
     // 3. Write a regular expression that matches a string if it contains at least one digit.
+    // Redo without regEx
+    // see string method
     function findIsDigit(word) {
       const regEx = /\d/g;
       const result = word.match(regEx);
@@ -93,64 +103,52 @@
 
     function nextElement(arr) {
       let diff = arr[1] - arr[0];
-
-      arr.forEach((sequenceNumber, index) => {
-        if (index > 0) {
-          if (sequenceNumber - diff !== arr[index - 1]) {
-            diff = sequenceNumber - arr[index - 1];
-          }
-        }
-      });
-      return diff;
+      return arr[arr.length - 1] + diff;
+      // arr.forEach((sequenceNumber, index) => {
+      //   if (index > 0) {
+      //     if (sequenceNumber - diff !== arr[index - 1]) {
+      //       diff = sequenceNumber - arr[index - 1];
+      //     }
+      //   }
+      // });
+      // return diff;
     }
-
-    // console.log("Arethmatic next number to be pushed", nextElement([3, 5, 7]));
-    // nextElement([-5, -6, -7]);
-
-    // console.log(
-    //   "Arethmatic next number to be pushed",
     console.log(
       "\n \n \n Arethmatic next number to be pushed",
       nextElement([5, 10, 15, 20, 25, 30, 35])
     );
-    // );
 
     // 5. In semantic versioning a piece of software can be represented in a format like this example: 6.1.9
-
+    // use meaningfull names for functions and variables
     function retrieveMajor(semver) {
-      let versionArray = semver.split(".");
-      const majorVersion = versionArray[0];
-      return majorVersion;
+      return semver.split(".")[0];
     }
 
     function retrieveMinor(semver) {
-      let versionArray = semver.split(".");
-      const minorVersion = versionArray[1];
-      return minorVersion;
+      return semver.split(".")[1];
     }
 
     function retrievePatch(semver) {
-      let versionArray = semver.split(".");
-      const patch = versionArray[2];
-      return patch;
+      return semver.split(".");
     }
 
-    console.log("Major Version", retrieveMajor("6.1.9"));
+    console.log("\n \n \n Major Version", retrieveMajor("6.1.9"));
     console.log("Minor Version", retrieveMinor("6.1.9"));
     console.log("retrieve patch", retrievePatch("6.1.9"));
 
     // 6. Create a function that returns the smaller number.
 
     function smallerNum(n1, n2) {
-      return Math.min(n1, n2);
+      return n1 < n2 ? n1 : n2;
     }
 
     console.log("smaller number is", smallerNum("21", "44"));
 
     // 7. Your friend is trying to write a function that removes all vowels from a string.
+    // do without regEx
+    // see
     function removeVowels(str) {
-      const removedVowels = str.replace(/[aeiou]/gi, ""); //regEx for removing vowels
-      return removedVowels;
+      return str.replace(/[aeiou]/gi, ""); //regEx for removing vowels
     }
 
     console.log("the word after removing vowel", removeVowels("candy"));
@@ -381,19 +379,21 @@
 
     // 23. Create a function that takes in an array (slot machine outcome) and returns true if all elements in the array are identical, and false otherwise. The array will contain 4 elements.
     function testJackpot(jackpotArray) {
-      let isEqual = true;
       for (let index = 0; index < jackpotArray.length; index++) {
         if (jackpotArray[index] !== jackpotArray[0]) {
-          isEqual = false;
-          break;
+          return false;
         }
       }
-      return isEqual;
+      return true;
     }
-    console.log("it is jackpot: ", testJackpot(["@", "@", "@", "@"]));
+    console.log(
+      "\n \n \n \n it is jackpot: ",
+      testJackpot(["@", "@", "@", "@"])
+    );
     console.log("it is jackpot: ", testJackpot(["SS", "SS", "Ss", "Ss"]));
 
     // 24. Write a function that reverses a string. Make your function recursive.
+    // do it without these functions
     function reverse(word) {
       return word
         .split("")
@@ -411,13 +411,16 @@
       else return num * factorial(num - 1);
     }
 
+    // 1 * 2 * 3 * 4 * 5;
+
     console.log("factorial is: ", factorial(5));
 
     // 26. Create a function that takes an array of date objects and returns the "longest streak" (i.e. number of consecutive days in a row).
+    // confirm how many hours in a day
 
     function longestStreak(arr) {
       if (arr.length === 0) return 0;
-      const MILI_SECOND_IN_DAY = 86400000;
+      const MILI_SECOND_IN_DAY = 24 * 60 * 60 * 1000;
       let maxStreak = 0;
       let streak = 0;
       for (let index = 0; index < arr.length - 1; index++) {
