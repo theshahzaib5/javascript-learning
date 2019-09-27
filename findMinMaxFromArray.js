@@ -1,4 +1,4 @@
-const ARRAY = [8, 4, 3, 1];
+const ARRAY = [3, 2, 1];
 const ARRAY1 = [4, 2, 3];
 function difference(array) {
   let minNumber = array[0];
@@ -10,25 +10,17 @@ function difference(array) {
   return maxNumber;
 }
 
-function sorter(array) {
-  var count = array.length - 1,
-    swap,
-    j,
-    i;
-
-  for (j = 0; j < count; j++) {
-    for (i = 0; i < count; i++) {
-      if (array[i] > array[i + 1]) {
-        swap = array[i + 1];
-        array[i + 1] = array[i];
-        array[i] = swap;
+function findSecondMax(arr) {
+  for (let index = 0; index < arr.length; index++) {
+    for (let childIndex = 0; childIndex < arr.length; childIndex++) {
+      if(arr[childIndex] > arr[childIndex + 1]) {
+        let swap = arr[childIndex + 1];
+        arr[childIndex + 1] = arr[childIndex];
+        arr[childIndex] = swap;
       }
     }
   }
-
-  return array;
+  return arr[arr.length - 2];
 }
 
 console.log(findSecondMax(ARRAY));
-console.log(findSecondMax(ARRAY1));
-// console.log(findSecondMax(ARRAY));
