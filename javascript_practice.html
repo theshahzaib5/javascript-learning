@@ -43,26 +43,6 @@
     // update min max (without use built in mehtods)
     // what is indexing
 
-    function difference(array) {
-      let minNumber = array[0];
-      for (let index = 0; index < array.length - 1; index++) {
-        array[index] < array[index + 1]
-          ? (minNumber = array[index])
-          : (minNumber = array[index + 1]);
-      }
-      console.log(minNumber);
-      const maxNum = Math.max(...array); // finding max value from array
-      const numDifference = maxNum - minNumber;
-      console.log(
-        "numDifference of min max numbers in array is",
-        numDifference
-      );
-
-      document.getElementById("arrayDifference").innerHTML = numDifference;
-    }
-
-    difference([50, 15, 20, 22, 10, 6]);
-
     // 2. Write a function that returns true if a word can be found in between the start and end word in a dictionary.
     function isBetween(first, last, word) {
       const sorted = [first, last, word].sort(); //sort the words
