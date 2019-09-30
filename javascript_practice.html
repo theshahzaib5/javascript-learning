@@ -67,17 +67,6 @@
     // 3. Write a regular expression that matches a string if it contains at least one digit.
     // Redo without regEx
     // see string method
-    function findIsDigit(word) {
-      const regEx = /\d/g;
-      const result = word.match(regEx);
-      if (result == null) return "no digit found";
-      return result;
-    }
-
-    console.log("digit found in the string", findIsDigit("adsfa12"));
-    console.log("digit found in the string", findIsDigit("ads"));
-
-    document.getElementById("isDigit").innerHTML = findIsDigit("adsfa12");
 
     // 4. Create a function that returns the next element in an arithmetic sequence. In an arithmetic sequence, each element is formed by adding the same constant to the previous element.
 
@@ -100,21 +89,21 @@
 
     // 5. In semantic versioning a piece of software can be represented in a format like this example: 6.1.9
     // use meaningfull names for functions and variables
-    function retrieveMajor(semver) {
-      return semver.split(".")[0];
+    function retrieveMajorVersion(semiVersion) {
+      return semiVersion.split(".")[0];
     }
 
-    function retrieveMinor(semver) {
-      return semver.split(".")[1];
+    function retrieveMinorVersion(semiVersion) {
+      return semiVersion.split(".")[1];
     }
 
-    function retrievePatch(semver) {
-      return semver.split(".");
+    function retrievePatchVersion(semiVersion) {
+      return semiVersion.split(".")[2];
     }
 
-    console.log("\n \n \n Major Version", retrieveMajor("6.1.9"));
-    console.log("Minor Version", retrieveMinor("6.1.9"));
-    console.log("retrieve patch", retrievePatch("6.1.9"));
+    console.log("\n \n \n Major Version", retrieveMajorVersion("6.1.9"));
+    console.log("Minor Version", retrieveMinorVersion("6.1.9"));
+    console.log("retrieve patch", retrievePatchVersion("6.1.9"));
 
     // 6. Create a function that returns the smaller number.
 
