@@ -1,7 +1,7 @@
 function findIsDigit(word) {
   let hasInt = false;
   for (let index = 0; index < word.length; index++) {
-    if (word.charCodeAt(index) <= 57 && word.charCodeAt(index) >= 48) {
+    if (word.charCodeAt(index) >= 48 && word.charCodeAt(index) <= 57) {
       hasInt = true;
       break;
     }

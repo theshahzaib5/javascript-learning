@@ -10,7 +10,7 @@ function changeEnough(change, number) {
   const totalPenny = change[3] * penny;
 
   const totalAmount = totalQuaters + totalDimes + totalNickels + totalPenny;
-  return totalAmount >= number ? false : true;
+  return totalAmount >= number ? true : false;
 }
 
 console.log(changeEnough([2, 100, 0, 0], 14.11));
