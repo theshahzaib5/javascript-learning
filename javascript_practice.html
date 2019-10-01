@@ -125,14 +125,6 @@
     console.log("the word after removing vowel", removeVowels("apple"));
 
     // 8. Create a function to remove all null values from an array.
-    removeNull = arr => arr.filter(element => element != null);
-
-    console.log("after removing null", removeNull(["a", null, "b", null]));
-    console.log(
-      "after removing null",
-      removeNull([null, null, null, null, null])
-    );
-    console.log("after removing null", removeNull([7, 8, null, 9]));
 
     // 9. Given a sorted array of numbers, remove any numbers that are divisible by 13. Return the amended array.
     unlucky13 = nums => nums.filter(num => num % 13 === 0);
@@ -350,16 +342,6 @@
 
     // 24. Write a function that reverses a string. Make your function recursive.
     // do it without these functions
-    function reverse(word) {
-      return word
-        .split("")
-        .reverse()
-        .join("");
-    }
-    console.log("reverse word would be: ", reverse("hello"));
-    console.log("reverse word would be: ", reverse("world"));
-    console.log("reverse word would be: ", reverse("a"));
-    console.log("reverse word would be: ", reverse(""));
 
     // 25. factorial function
     function factorial(num) {
