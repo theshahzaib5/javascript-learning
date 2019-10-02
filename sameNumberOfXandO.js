@@ -7,8 +7,7 @@ function findXandOLength(myString) {
     if (newString[index] === "x") lengthOfX++;
     if (newString[index] === "o") lengthOfO++;
   }
-  if (lengthOfX === lengthOfO) return true;
-  return false;
+  return lengthOfX === lengthOfO;
 }
 
 console.log(findXandOLength("xxoo"));
