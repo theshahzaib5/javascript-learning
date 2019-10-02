@@ -7,11 +7,13 @@
 
 function boxSeq(number) {
   let boxes = 0;
+  let arr = [];
   for (let index = 1; index <= number; index++) {
-    if (index % 2 === 0) boxes--;
+    if (index % 2 === 0) boxes = boxes - 1;
     else if (index % 2 !== 0) boxes = boxes + 3;
+    arr.push(boxes);
   }
-  return boxes;
+  return arr;
 }
 
 // function boxSeq(number) {
@@ -19,4 +21,4 @@ function boxSeq(number) {
 //   return number + 2;
 // }
 
-console.log(boxSeq(5));
+console.log(boxSeq(3));
